@@ -1,0 +1,23 @@
+{
+  "id": "yEBgcsUy3Ox7eZc",
+  "unique_key": "https://www.mensaplan.de/archeteria/index.html",
+  "order_no": "1757358844079.643000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/archeteria/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 2
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/archeteria/index.html",
+    "id": "yEBgcsUy3Ox7eZc"
+  }
+}

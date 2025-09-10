@@ -1,0 +1,23 @@
+{
+  "id": "Z8tVvvWIqsciH9k",
+  "unique_key": "https://www.mensaplan.de/index.html",
+  "order_no": null,
+  "handled_at": "2025-09-08 19:14:03.655721+00:00",
+  "request": {
+    "url": "https://www.mensaplan.de/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "state": 3
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": "https://www.mensaplan.de/index.html",
+    "handled_at": "2025-09-08 19:14:03.655721+00:00",
+    "unique_key": "https://www.mensaplan.de/index.html",
+    "id": "Z8tVvvWIqsciH9k"
+  }
+}

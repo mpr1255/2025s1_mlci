@@ -1,0 +1,23 @@
+{
+  "id": "ZscwtPhK3hSeLjw",
+  "unique_key": "https://www.mensaplan.de/mensa-campus-design/index.html",
+  "order_no": "1757358843959.430000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/mensa-campus-design/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 2
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/mensa-campus-design/index.html",
+    "id": "ZscwtPhK3hSeLjw"
+  }
+}

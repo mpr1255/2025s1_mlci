@@ -1,0 +1,23 @@
+{
+  "id": "IVq6NlZxxb4teRX",
+  "unique_key": "https://www.mensaplan.de/witzenhausen/mensa-witzenhausen/index.html",
+  "order_no": "1757358843647.465000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/witzenhausen/mensa-witzenhausen/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/witzenhausen/mensa-witzenhausen/index.html",
+    "id": "IVq6NlZxxb4teRX"
+  }
+}

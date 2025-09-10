@@ -1,0 +1,23 @@
+{
+  "id": "Nm19saTBEK56E2u",
+  "unique_key": "https://www.mensaplan.de/senftenberg/mensa-senftenberg/index.html",
+  "order_no": "1757358843633.346000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/senftenberg/mensa-senftenberg/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/senftenberg/mensa-senftenberg/index.html",
+    "id": "Nm19saTBEK56E2u"
+  }
+}

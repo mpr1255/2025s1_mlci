@@ -1,0 +1,23 @@
+{
+  "id": "fwW8Ls8nSkqNs5p",
+  "unique_key": "https://www.mensaplan.de/info/impressum.html",
+  "order_no": "1757358843655.208000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/info/impressum.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/info/impressum.html",
+    "id": "fwW8Ls8nSkqNs5p"
+  }
+}

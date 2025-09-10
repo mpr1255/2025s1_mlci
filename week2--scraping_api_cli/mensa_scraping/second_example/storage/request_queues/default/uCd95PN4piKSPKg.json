@@ -1,0 +1,23 @@
+{
+  "id": "uCd95PN4piKSPKg",
+  "unique_key": "https://www.mensaplan.de/minden/mensa-minden/index.html",
+  "order_no": "1757358843608.177000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/minden/mensa-minden/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/minden/mensa-minden/index.html",
+    "id": "uCd95PN4piKSPKg"
+  }
+}

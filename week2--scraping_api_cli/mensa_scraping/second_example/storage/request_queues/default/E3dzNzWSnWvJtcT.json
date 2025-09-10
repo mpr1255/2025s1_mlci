@@ -1,0 +1,23 @@
+{
+  "id": "E3dzNzWSnWvJtcT",
+  "unique_key": "https://www.mensaplan.de/soest/mensaforum-soest/index.html",
+  "order_no": "1757358843634.376000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/soest/mensaforum-soest/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/soest/mensaforum-soest/index.html",
+    "id": "E3dzNzWSnWvJtcT"
+  }
+}

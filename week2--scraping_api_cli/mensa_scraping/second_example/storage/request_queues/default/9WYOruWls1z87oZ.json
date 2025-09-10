@@ -1,0 +1,23 @@
+{
+  "id": "9WYOruWls1z87oZ",
+  "unique_key": "https://www.mensaplan.de/mensa-hu-nord/index.html",
+  "order_no": "1757358843765.616000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/mensa-hu-nord/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 2
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/mensa-hu-nord/index.html",
+    "id": "9WYOruWls1z87oZ"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "5LbpeK4Ii8wM3r4",
+  "unique_key": "https://www.mensaplan.de/eberswalde/mensa-hne/index.html",
+  "order_no": null,
+  "handled_at": "2025-09-08 19:14:04.147582+00:00",
+  "request": {
+    "url": "https://www.mensaplan.de/eberswalde/mensa-hne/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "state": 3,
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": "https://www.mensaplan.de/eberswalde/mensa-hne/index.html",
+    "handled_at": "2025-09-08 19:14:04.147582+00:00",
+    "unique_key": "https://www.mensaplan.de/eberswalde/mensa-hne/index.html",
+    "id": "5LbpeK4Ii8wM3r4"
+  }
+}

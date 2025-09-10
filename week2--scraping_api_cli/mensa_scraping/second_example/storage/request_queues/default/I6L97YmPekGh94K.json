@@ -1,0 +1,23 @@
+{
+  "id": "I6L97YmPekGh94K",
+  "unique_key": "https://www.mensaplan.de/unique-cafe/index.html",
+  "order_no": "1757358843922.986000",
+  "handled_at": null,
+  "request": {
+    "url": "https://www.mensaplan.de/unique-cafe/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "crawlDepth": 2
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": null,
+    "handled_at": null,
+    "unique_key": "https://www.mensaplan.de/unique-cafe/index.html",
+    "id": "I6L97YmPekGh94K"
+  }
+}

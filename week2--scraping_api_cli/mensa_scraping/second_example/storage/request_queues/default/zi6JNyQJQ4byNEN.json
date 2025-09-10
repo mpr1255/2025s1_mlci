@@ -1,0 +1,24 @@
+{
+  "id": "zi6JNyQJQ4byNEN",
+  "unique_key": "https://www.mensaplan.de/freising/index.html",
+  "order_no": null,
+  "handled_at": "2025-09-08 19:14:04.348591+00:00",
+  "request": {
+    "url": "https://www.mensaplan.de/freising/index.html",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "user_data": {
+      "__crawlee": {
+        "state": 3,
+        "crawlDepth": 1
+      }
+    },
+    "retry_count": 0,
+    "no_retry": false,
+    "loaded_url": "https://www.mensaplan.de/freising/index.html",
+    "handled_at": "2025-09-08 19:14:04.348591+00:00",
+    "unique_key": "https://www.mensaplan.de/freising/index.html",
+    "id": "zi6JNyQJQ4byNEN"
+  }
+}
