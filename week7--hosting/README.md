@@ -98,13 +98,13 @@ See [exercise4_cloud/README.md](exercise4_cloud/README.md) and [TUTORIAL.md](TUT
 
 ## Learning path: the five pieces
 
-This week progressively builds your understanding:
+This week covers five pieces:
 
-1. **Piece 1: Local API** → Understand servers and endpoints
-2. **Piece 2: Local Dashboard** → Build interactive web apps
-3. **Piece 3: Internet Tunnel** → Share with colleagues (security considerations!)
-4. **Piece 4: Cloud Deployment** → Make it permanent
-5. **Piece 5: Auto-Redeploy** → Experience CI/CD in action
+1. **Run a local API server**: FastAPI serving math endpoints on localhost
+2. **Serve a local dashboard**: Streamlit dashboard running on your machine
+3. **Expose to internet**: Tailscale funnel creates public URL (security considerations!)
+4. **Deploy to cloud**: Streamlit Community Cloud hosts it 24/7
+5. **Test auto-redeployment**: Push changes to GitHub, watch auto-deploy
 
 ## Troubleshooting
 

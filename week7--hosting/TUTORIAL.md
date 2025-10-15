@@ -91,13 +91,13 @@ git remote -v
 
 You've built scripts that run on your computer. But what if you want others to use your work?
 
-### The journey
+This week covers five pieces:
 
-1. **Localhost server**: Run on your machine, access via localhost
-2. **Internet tunnel**: Expose through Tailscale to anyone with URL
-3. **Cloud hosting**: Deploy to Streamlit servers, permanent URL
-
-This week, we'll walk through all these steps!
+1. **Run a local API server**: FastAPI serving math endpoints on localhost
+2. **Serve a local dashboard**: Streamlit dashboard running on your machine
+3. **Expose to internet**: Tailscale funnel creates public URL to your localhost
+4. **Deploy to cloud**: Streamlit Community Cloud hosts it 24/7
+5. **Test auto-redeployment**: Push changes to GitHub, watch auto-deploy
 
 ### Key concepts
 
