@@ -1,14 +1,16 @@
-# Week 7: Hosting & Deployment
+# Week 7: Hosting - Five Easy Pieces
 
 Learn how to take your Python applications from local development to public deployment.
 
 ## Quick Start
 
 ```bash
-# Fork the repository on GitHub first (click "Fork" button)
-# Then clone YOUR fork:
-git clone https://github.com/YOUR_USERNAME/[REPO_NAME]
-cd [REPO_NAME]/week7--hosting
+# 1. Fork the repository on GitHub first:
+#    Go to https://github.com/mpr1255/2025s1_mlci and click "Fork"
+
+# 2. Then clone YOUR fork:
+git clone https://github.com/YOUR_USERNAME/2025s1_mlci
+cd 2025s1_mlci/week7--hosting
 ```
 
 Replace `YOUR_USERNAME` with your GitHub username.
@@ -16,15 +18,15 @@ Replace `YOUR_USERNAME` with your GitHub username.
 ## Contents
 
 - **[TUTORIAL.md](TUTORIAL.md)** - Complete step-by-step guide (start here!)
-- **exercise1_api/** - Basic API server with FastAPI
-- **exercise2_streamlit/** - Interactive dashboard
-- **exercise3_tailscale/** - Expose to internet with Tailscale
-- **exercise4_cloud/** - Deploy to Streamlit Community Cloud
+- **exercise1_api/** - Basic API server with FastAPI (Piece 1)
+- **exercise2_streamlit/** - Interactive dashboard (Piece 2)
+- **exercise3_tailscale/** - Expose to internet with Tailscale (Piece 3)
+- **exercise4_cloud/** - Deploy to Streamlit Community Cloud (Pieces 4-5)
 - **data/** - SpeakGer database (1000 speeches)
 
-## Exercises
+## The Five Pieces
 
-### 1. Basic API Server
+### Piece 1: Basic API Server
 Run a local API with math endpoints (`/sum`, `/divide`, etc.)
 
 ```bash
@@ -37,9 +39,9 @@ Test in another terminal:
 curl "http://localhost:8000/sum?a=5&b=3"
 ```
 
-Or open http://localhost:8000/docs in your browser for interactive testing!
+Or open http://localhost:8000/docs in your browser for interactive Swagger/OpenAPI testing!
 
-### 2. Streamlit Dashboard
+### Piece 2: Streamlit Dashboard
 Create an interactive web dashboard to explore parliamentary speeches
 
 ```bash
@@ -49,8 +51,8 @@ cd exercise2_streamlit
 
 Opens automatically in your browser at http://localhost:8501
 
-### 3. Tailscale Funnel
-Expose your local dashboard to the internet
+### Piece 3: Tailscale Funnel
+Expose your local dashboard to the internet (with security warnings!)
 
 ```bash
 # Terminal 1: Run dashboard
@@ -62,10 +64,10 @@ cd ../exercise3_tailscale
 ./start_funnel.sh
 ```
 
-### 4. Streamlit Community Cloud
-Deploy to the cloud for permanent hosting
+### Pieces 4 & 5: Cloud Deploy & Auto-Redeploy
+Deploy to Streamlit Community Cloud for permanent hosting and test automatic redeployment
 
-See [exercise4_cloud/README.md](exercise4_cloud/README.md) for instructions.
+See [exercise4_cloud/README.md](exercise4_cloud/README.md) and [TUTORIAL.md](TUTORIAL.md) for complete instructions.
 
 ## Prerequisites
 
@@ -94,14 +96,15 @@ See [exercise4_cloud/README.md](exercise4_cloud/README.md) for instructions.
   - [streamlit.io/cloud](https://streamlit.io/cloud)
   - Sign in with your GitHub account
 
-## Learning Path
+## Learning Path: The Five Pieces
 
 This week progressively builds your understanding:
 
-1. **Local API** → Understand servers and endpoints
-2. **Local Dashboard** → Build interactive web apps
-3. **Internet Tunnel** → Share with colleagues
-4. **Cloud Deployment** → Make it permanent
+1. **Piece 1: Local API** → Understand servers and endpoints
+2. **Piece 2: Local Dashboard** → Build interactive web apps
+3. **Piece 3: Internet Tunnel** → Share with colleagues (security considerations!)
+4. **Piece 4: Cloud Deployment** → Make it permanent
+5. **Piece 5: Auto-Redeploy** → Experience CI/CD in action
 
 ## Troubleshooting
 
