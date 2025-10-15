@@ -10,7 +10,7 @@ Learn how to take your Python applications from running on your laptop to being 
 
 By the end of this tutorial, you will be able to:
 
-1. Explain what "hosting" means and the difference between local and remote execution
+1. Explain what "hosting" means and the difference between local hosting (your computer) and cloud hosting (someone else's servers)
 2. Run a REST API server locally and test it with curl and browser tools
 3. Create an interactive web dashboard with Streamlit
 4. Expose a local service to the public internet using Tailscale Funnel
