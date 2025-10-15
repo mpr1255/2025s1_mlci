@@ -6,7 +6,7 @@ Learn how to take your Python applications from running on your laptop to being 
 
 ---
 
-## Learning Goals
+## Learning goals
 
 By the end of this tutorial, you will be able to:
 
@@ -30,7 +30,7 @@ By the end of this tutorial, you will be able to:
 
 Before starting this week's exercises, make sure you have:
 
-### Required for All Exercises
+### Required for all exercises
 - **uv installed**: Python package manager (you should have this from Week 6)
   ```bash
   uv --version
@@ -59,9 +59,9 @@ Before starting this week's exercises, make sure you have:
 
 ---
 
-## Getting Started
+## Getting started
 
-### Fork the Repository
+### Fork the repository
 
 Before you begin, you need to create your own copy of the course repository:
 
@@ -69,7 +69,7 @@ Before you begin, you need to create your own copy of the course repository:
 2. Click the **"Fork"** button in the top-right corner
 3. This creates a copy under your GitHub account: `https://github.com/YOUR_USERNAME/2025s1_mlci`
 
-### Clone YOUR Fork
+### Clone YOUR fork
 
 Now clone your forked repository (not the original):
 
@@ -87,21 +87,19 @@ git remote -v
 
 ---
 
-## The Big Picture: What is Hosting?
+## The big picture: what is hosting?
 
 You've built scripts that run on your computer. But what if you want others to use your work?
 
-### The Journey
+### The journey
 
-1. **Local**: Your script runs on your machine
-2. **Local Server**: Your script listens on a port, responding to requests
-3. **Network Access**: Others on your network can access it
-4. **Internet Access**: Anyone with the URL can access it
-5. **Cloud Hosting**: Runs on someone else's server, always available
+1. **Localhost server**: Run on your machine, access via localhost
+2. **Internet tunnel**: Expose through Tailscale to anyone with URL
+3. **Cloud hosting**: Deploy to Streamlit servers, permanent URL
 
 This week, we'll walk through all these steps!
 
-### Key Concepts
+### Key concepts
 
 **Port**: A number (e.g., 8000, 8501) that identifies a service on a computer
 - Think of it like an apartment number in a building
@@ -109,7 +107,7 @@ This week, we'll walk through all these steps!
 
 **Localhost / 127.0.0.1**: Special address that means "this computer"
 - `http://localhost:8000` = "connect to port 8000 on my own machine"
-- `localhost` and `127.0.0.1` are the same thing - just different ways to refer to your own computer
+- `localhost` and `127.0.0.1` are basically the same, though there are subtle differences that you don't need to think about most of the time
 
 **API (Application Programming Interface)**: A service that responds to requests
 - You send a request (like opening a URL)
@@ -119,11 +117,10 @@ This week, we'll walk through all these steps!
 **Endpoint**: A specific URL path on an API
 - `/sum` = do addition
 - `/hello` = get a greeting
-- Like different buttons on the vending machine
 
 ---
 
-## Piece 1: Setup & Your First API Server
+## Piece 1: Setup & your first API server
 
 ### Navigate to the week7 folder
 
@@ -157,7 +154,7 @@ If not installed:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### What We're Building
+### What we're building
 
 A simple math API with these endpoints:
 - `/hello` - Says hello
@@ -198,6 +195,8 @@ In Terminal 1:
 ./simple_api.py
 ```
 
+[Why could it run like that, btw? Look at the shebang line at the top. Ask gpt about shebang lines to learn more]
+
 You'll see:
 ```
 Starting Simple Math API Server
@@ -213,6 +212,7 @@ API docs at: http://localhost:8000/docs
 - Your script is now running and **waiting** for requests
 - It's listening on port 8000
 - It won't stop until you press Ctrl+C
+- If you ping it, you'll see responses in the console
 
 ### Step 3: Test with curl
 
@@ -266,9 +266,9 @@ Go back to Terminal 1 and press **Ctrl+C**
 
 ---
 
-## Piece 2: Interactive Dashboard with Streamlit
+## Piece 2: Interactive dashboard with Streamlit
 
-### What We're Building
+### What we're building
 
 A web dashboard that:
 - Shows statistics from the SpeakGer database
@@ -350,9 +350,9 @@ st.title(" SpeakGer Parliamentary Speech Dashboard")
 st.title(" My Custom Dashboard")
 ```
 
-Save the file. The dashboard will reload automatically!
+Save the file. The dashboard will reload automatically.
 
-### Understanding the Database Queries
+### Understanding the database queries
 
 The dashboard runs SQL queries like:
 
@@ -376,7 +376,7 @@ This:
 
 ---
 
-## Piece 3: Expose to Internet with Tailscale
+## Piece 3: Expose to internet with Tailscale
 
 ### ⚠️ SECURITY WARNING ⚠️
 
@@ -388,16 +388,16 @@ This:
 - **While Tailscale is secure**, you are still making your local service accessible from anywhere in the world
 - **You can get a custom domain** and point it to your computer via Tailscale (but this is NOT recommended for production use)
 
-**Security notes:**
-- The URL includes a random 20-character path (provides some obscurity)
-- Without the exact URL, people can't easily find your service
+**Why is this OK right now?**
+- The URL includes a random 20-character path. Equivalent to an API key, google docs link
+- Without the exact URL, people can't access the service
 - Traffic goes through Tailscale's encrypted network
 - You can stop the funnel anytime with Ctrl+C
-- This is great for demos and sharing with colleagues, but NOT for production deployments
+- This is great for demos and sharing with colleagues, not for production deployments
 
 **IMPORTANT LIMITATION**: Tailscale only allows ONE active funnel per machine at a time. Starting this will hijack any existing funnel you have running. All funnels use port 443 (HTTPS).
 
-### What is Tailscale Funnel?
+### What is Tailscale funnel?
 
 **Problem**: Your dashboard runs on `localhost`. Only you can access it.
 
@@ -487,7 +487,7 @@ The URL will be unique to your machine. Copy the entire URL (it's long!).
 
 ---
 
-## Piece 4: Deploy to Cloud
+## Piece 4: Deploy to cloud
 
 ### What is Streamlit Community Cloud?
 
@@ -598,7 +598,7 @@ https://your-username-repo-name-speakger-dashboard.streamlit.app
 
 ---
 
-## Piece 5: Testing Auto-Redeployment
+## Piece 5: Testing auto-redeployment
 
 Let's test that changes automatically redeploy. Make a small edit to `app.py`:
 
@@ -613,14 +613,14 @@ st.markdown("Explore German parliamentary speeches from the Bremen dataset")
 
 Change it to:
 ```python
-st.markdown("Hello World! Explore German parliamentary speeches from the Bremen dataset")
+st.markdown("Alles Gut! Explore German parliamentary speeches from the Bremen dataset")
 ```
 
 Save the file, then push to GitHub:
 
 ```bash
 git add app.py
-git commit -m "Add hello world message"
+git commit -m "Add alles gut message"
 git push
 ```
 
@@ -629,7 +629,7 @@ git push
 2. You'll see "App is updating..."
 3. Wait 30-60 seconds
 4. Refresh your app URL
-5. You should see "Hello World!" at the top
+5. You should see "Alles Gut!" at the top
 
 That's automatic deployment in action - any git push triggers a redeploy!
 
@@ -643,7 +643,7 @@ Send the URL to:
 
 No authentication required. They just open the link.
 
-### Making More Changes
+### Making more changes
 
 Any time you want to update your app, just:
 
@@ -655,11 +655,23 @@ git commit -m "Your commit message"
 git push
 ```
 
+Or better, use the github desktop app. Bit saner.
+
 Streamlit Cloud automatically redeploys within a minute!
+
+### Cleanup: revoking GitHub permissions
+
+When you're done with this tutorial, you can revoke Streamlit's access to your GitHub account:
+
+1. Go to GitHub Settings → Applications → Authorized OAuth Apps
+2. Find "Streamlit"
+3. Click "Revoke" to remove access
+
+You can always re-authorize later if you want to deploy more apps.
 
 ---
 
-## Concepts Review
+## Concepts review
 
 ### Ports
 
@@ -673,7 +685,7 @@ Your Computer (localhost / 127.0.0.1)
 
 Each port can only be used by one application at a time.
 
-### Client-Server Model
+### Client-server model
 
 ```
 Client (you)            Server (your script)
@@ -685,7 +697,7 @@ Client (you)            Server (your script)
 
 Your API server is always waiting, ready to respond.
 
-### Hosting Layers
+### Hosting layers
 
 ```
 1. Local Development
@@ -701,7 +713,7 @@ Your API server is always waiting, ready to respond.
    https://your-app.streamlit.app (everyone)
 ```
 
-### Comparison: Three Ways to Host
+### Comparison: three ways to host
 
 | Method | Accessibility | Setup | Cost | Best For |
 |--------|--------------|-------|------|----------|
@@ -713,9 +725,9 @@ Your API server is always waiting, ready to respond.
 
 ---
 
-## Next Steps & Extensions
+## Next steps & extensions
 
-### Ideas to Explore
+### Ideas to explore
 
 1. **Custom Domain**: Point `yourdomain.com` to your Streamlit app
 2. **Authentication**: Add login with `streamlit-authenticator`
@@ -724,7 +736,7 @@ Your API server is always waiting, ready to respond.
 5. **Monitoring**: Add analytics with Google Analytics or Plausible
 6. **Caching**: Optimize with `@st.cache_data` and `@st.cache_resource`
 
-### Other Hosting Options
+### Other hosting options
 
 **For Python Web Apps:**
 - [Render](https://render.com) - Free tier for web services
@@ -794,7 +806,7 @@ ls -la data/speakger.db
 grep "DB_PATH" exercise2_streamlit/dashboard.py
 ```
 
-### Streamlit Cloud Deployment Issues
+### Streamlit Cloud deployment issues
 
 **"No such file: speakger.db"**
 - Make sure the database is committed: `git ls-files | grep speakger.db`
@@ -835,15 +847,15 @@ grep "DB_PATH" exercise2_streamlit/dashboard.py
 
 ---
 
-## Quick Reference
+## Quick reference
 
-### Run the API Server
+### Run the API server
 ```bash
 cd exercise1_api
 ./simple_api.py
 ```
 
-### Run the Streamlit Dashboard
+### Run the Streamlit dashboard
 ```bash
 cd exercise2_streamlit
 ./run_dashboard.sh
@@ -860,7 +872,7 @@ cd ../exercise3_tailscale
 ./start_funnel.sh
 ```
 
-### Deploy to Cloud
+### Deploy to cloud
 1. Ensure files are in GitHub
 2. Go to [share.streamlit.io](https://share.streamlit.io)
 3. Deploy from `week7--hosting/exercise4_cloud/app.py`
