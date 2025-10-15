@@ -163,7 +163,7 @@ if page == "Statistics":
     if not stats['party_counts'].empty:
         st.dataframe(
             stats['party_counts'],
-            width='stretch',
+            use_container_width=True,
             hide_index=True
         )
     else:
@@ -254,7 +254,7 @@ elif page == "Visualizations":
             labels={'Count': 'Number of Speeches', 'Year': 'Year'}
         )
         fig.update_traces(line_color='#1f77b4', line_width=3)
-        st.plotly_chart(fig, width='stretch')
+        st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("No time-series data available")
 
@@ -270,7 +270,7 @@ elif page == "Visualizations":
             color='count',
             color_continuous_scale='Blues'
         )
-        st.plotly_chart(fig, width='stretch')
+        st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("No party data available")
 
@@ -287,7 +287,7 @@ elif page == "Visualizations":
                 title='Distribution of Speech Lengths (Sample of 500)',
                 labels={'length': 'Speech Length (characters)', 'count': 'Frequency'}
             )
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("No speech length data available")
 
