@@ -1,0 +1,5 @@
+# Tailscale Funnel Configuration
+PORT=8501
+RANDOM_PATH=4d595552b22099e48e10
+FUNNEL_URL=https://mac-air.dropbear-wezen.ts.net/4d595552b22099e48e10
+CREATED=Wed 15 Oct 2025 17:49:22 CEST
