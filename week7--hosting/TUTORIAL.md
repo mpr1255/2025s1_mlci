@@ -8,12 +8,22 @@
 
 ## Getting Started
 
-### Clone the Repository
+### Fork the Repository (Important!)
+
+You'll need to **fork** the course repository to your own GitHub account so you can deploy to Streamlit Cloud in Exercise 4.
+
+1. Go to [GITHUB_URL_WILL_BE_PROVIDED]
+2. Click the **"Fork"** button in the top right
+3. This creates a copy in your GitHub account
+
+### Clone Your Fork
 
 ```bash
-git clone [GITHUB_URL_WILL_BE_PROVIDED]
+git clone https://github.com/YOUR_USERNAME/[REPO_NAME]
 cd [REPO_NAME]/week7--hosting
 ```
+
+Replace `YOUR_USERNAME` with your GitHub username.
 
 All the exercises are ready to run - you just need to execute the scripts!
 
@@ -497,36 +507,35 @@ plotly==5.24.1
 
 This tells Streamlit Cloud what packages to install.
 
-### Step 2: Ensure files are in Git
+### Step 2: Verify files are in your GitHub fork
 
-This tutorial assumes you cloned the course repo. Check:
+Make sure you forked the repository (not just cloned it!). Check your GitHub:
 
 ```bash
-cd ../../.. # Back to repo root
-git status
+# Check your remote URL
+git remote -v
 ```
 
-If `week7--hosting` is listed, you're good!
-
-If not:
-```bash
-git add week7--hosting
-git commit -m "Add week 7 hosting exercises"
-git push
+You should see YOUR username in the URL:
+```
+origin  https://github.com/YOUR_USERNAME/repo_name.git
 ```
 
-**Important**: The database file (`speakger.db`) must be committed!
+If you see the course repo URL instead, you need to fork it first (see "Getting Started" section).
 
 ### Step 3: Deploy to Streamlit Cloud
 
 1. Go to [share.streamlit.io](https://share.streamlit.io)
 2. Sign in with GitHub
 3. Click **"New app"**
-4. Fill in:
- - **Repository**: Your course repo
- - **Branch**: `main` (or `master`)
+4. Fill in the deployment form:
+ - **Repository**: Select your forked repo (should be `YOUR_USERNAME/repo_name`)
+ - **Branch**: `main` (or `master` - check what your repo uses)
  - **Main file path**: `week7--hosting/exercise4_cloud/app.py`
- - **App URL**: Choose a name (e.g., `speakger-dashboard`)
+
+   **IMPORTANT**: You must navigate to the exact path where `app.py` is located. The file is NOT in the root of the repository - it's inside `week7--hosting/exercise4_cloud/`. If you get deployment errors, double-check this path matches your repository structure!
+
+ - **App URL**: Choose a custom name (e.g., `speakger-dashboard`)
 5. Click **"Deploy!"**
 
 ### Step 4: Wait for deployment
@@ -554,7 +563,42 @@ https://your-username-repo-name-speakger-dashboard.streamlit.app
 - **Free** - For public repos
 - **Auto-updating** - Push to GitHub and it redeploys automatically
 
-### Step 6: Share with the world
+### Step 6: Test Auto-Redeployment
+
+Let's test that changes automatically redeploy. Make a small edit to `app.py`:
+
+```bash
+cd week7--hosting/exercise4_cloud
+```
+
+Edit `app.py` and find this line (around line 121):
+```python
+st.markdown("Explore German parliamentary speeches from the Bremen dataset")
+```
+
+Change it to:
+```python
+st.markdown("Hello World! Explore German parliamentary speeches from the Bremen dataset")
+```
+
+Save the file, then push to GitHub:
+
+```bash
+git add app.py
+git commit -m "Add hello world message"
+git push
+```
+
+**Watch what happens:**
+1. Go to your Streamlit Cloud dashboard
+2. You'll see "App is updating..."
+3. Wait 30-60 seconds
+4. Refresh your app URL
+5. You should see "Hello World!" at the top
+
+That's automatic deployment in action - any git push triggers a redeploy!
+
+### Step 7: Share with the world
 
 Send the URL to:
 - Classmates
@@ -564,19 +608,19 @@ Send the URL to:
 
 No authentication required. They just open the link.
 
-### Updating Your App
+### Making More Changes
 
-Made changes? Just push to GitHub:
+Any time you want to update your app, just:
 
 ```bash
 cd week7--hosting/exercise4_cloud
 # Edit app.py...
 git add app.py
-git commit -m "Update dashboard"
+git commit -m "Your commit message"
 git push
 ```
 
-Streamlit Cloud will automatically redeploy!
+Streamlit Cloud automatically redeploys within a minute!
 
 ### Troubleshooting
 

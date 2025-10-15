@@ -5,10 +5,13 @@ Learn how to take your Python applications from local development to public depl
 ## Quick Start
 
 ```bash
-# Clone the repository
-git clone [GITHUB_URL_WILL_BE_PROVIDED]
+# Fork the repository on GitHub first (click "Fork" button)
+# Then clone YOUR fork:
+git clone https://github.com/YOUR_USERNAME/[REPO_NAME]
 cd [REPO_NAME]/week7--hosting
 ```
+
+Replace `YOUR_USERNAME` with your GitHub username.
 
 ## Contents
 
