@@ -66,17 +66,30 @@ See [exercise4_cloud/README.md](exercise4_cloud/README.md) for instructions.
 
 ## Prerequisites
 
-- **uv**: Python package manager
+### Required for All Exercises
+- **uv**: Python package manager (you should have this from Week 6)
   ```bash
-  curl -LsSf https://astral.sh/uv/install.sh | sh
+  uv --version
   ```
+  If not: `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
-- **Tailscale** (for Exercise 3):
-  ```bash
-  brew install tailscale  # macOS
-  ```
+- **Week 6 completed**: You should be familiar with SQLite databases and SQL queries
 
-- **GitHub Account** (for Exercise 4): [github.com](https://github.com)
+### Required for Exercise 3 (Tailscale)
+- **Tailscale installed**: For exposing your local app to the internet
+  - macOS: `brew install tailscale`
+  - Linux: `curl -fsSL https://tailscale.com/install.sh | sh`
+  - Windows: Download from [tailscale.com/download](https://tailscale.com/download)
+
+- **Tailscale account**: Free account (you'll create this when you first run `tailscale up`)
+  - Can sign in with Google, GitHub, or Microsoft
+
+### Required for Exercise 4 (Cloud Deployment)
+- **GitHub account**: For hosting your code - [github.com](https://github.com)
+
+- **Streamlit Community Cloud account**: For deploying your app
+  - [streamlit.io/cloud](https://streamlit.io/cloud)
+  - Sign in with your GitHub account
 
 ## Learning Path
 
