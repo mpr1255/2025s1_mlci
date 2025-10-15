@@ -1,31 +1,28 @@
-# Week 7: Hosting & Deployment
+# Week 7: Hosting - Five Easy Pieces
 
 ## From Local Development to Public Access
 
-**Goal:** Understand how to expose your applications to the internet, from local hosting to cloud deployment
+Learn how to take your Python applications from running on your laptop to being accessible on the internet.
 
 ---
 
-## Getting Started
+## Learning Goals
 
-### Fork the Repository (Important!)
+By the end of this tutorial, you will be able to:
 
-You'll need to **fork** the course repository to your own GitHub account so you can deploy to Streamlit Cloud in Exercise 4.
+1. Explain what "hosting" means and the difference between local and remote execution
+2. Run a REST API server locally and test it with curl and browser tools
+3. Create an interactive web dashboard with Streamlit
+4. Expose a local service to the public internet using Tailscale Funnel
+5. Deploy a production application to Streamlit Community Cloud
+6. Understand the security implications of each hosting method
 
-1. Go to [GITHUB_URL_WILL_BE_PROVIDED]
-2. Click the **"Fork"** button in the top right
-3. This creates a copy in your GitHub account
-
-### Clone Your Fork
-
-```bash
-git clone https://github.com/YOUR_USERNAME/[REPO_NAME]
-cd [REPO_NAME]/week7--hosting
-```
-
-Replace `YOUR_USERNAME` with your GitHub username.
-
-All the exercises are ready to run - you just need to execute the scripts!
+**Skills you'll practice:**
+- FastAPI for REST APIs
+- Streamlit for interactive dashboards
+- Git workflows for deployment
+- Understanding ports, localhost, and network routing
+- Reading and understanding deployment logs
 
 ---
 
@@ -42,7 +39,7 @@ Before starting this week's exercises, make sure you have:
 
 - **Week 6 completed**: You should be familiar with SQLite databases and SQL queries
 
-### Required for Exercise 3 (Tailscale)
+### Required for Piece 3 (Tailscale)
 - **Tailscale installed**: For exposing your local app to the internet
   - macOS: `brew install tailscale`
   - Linux: `curl -fsSL https://tailscale.com/install.sh | sh`
@@ -52,7 +49,7 @@ Before starting this week's exercises, make sure you have:
   - Can sign in with Google, GitHub, or Microsoft
   - [tailscale.com](https://tailscale.com)
 
-### Required for Exercise 4 (Cloud Deployment)
+### Required for Piece 4 (Cloud Deployment)
 - **GitHub account**: For hosting your code
   - [github.com](https://github.com)
 
@@ -62,19 +59,35 @@ Before starting this week's exercises, make sure you have:
 
 ---
 
-## Learning Objectives
+## Getting Started
 
-By the end of this workshop, you will be able to:
+### Fork the Repository
 
-- Explain what it means to "host" an application
-- Run a local API server and make requests to it
-- Create an interactive dashboard with Streamlit
-- Expose a local service to the internet using Tailscale
-- Deploy an application to the cloud with Streamlit Community Cloud
+Before you begin, you need to create your own copy of the course repository:
+
+1. Go to https://github.com/mpr1255/2025s1_mlci
+2. Click the **"Fork"** button in the top-right corner
+3. This creates a copy under your GitHub account: `https://github.com/YOUR_USERNAME/2025s1_mlci`
+
+### Clone YOUR Fork
+
+Now clone your forked repository (not the original):
+
+```bash
+# Replace YOUR_USERNAME with your actual GitHub username
+git clone https://github.com/YOUR_USERNAME/2025s1_mlci.git
+cd 2025s1_mlci/week7--hosting
+```
+
+Verify you're in the right place:
+```bash
+git remote -v
+# Should show YOUR_USERNAME in the URL, not mpr1255
+```
 
 ---
 
-## 0. The Big Picture: What is Hosting?
+## The Big Picture: What is Hosting?
 
 You've built scripts that run on your computer. But what if you want others to use your work?
 
@@ -96,7 +109,7 @@ This week, we'll walk through all these steps!
 
 **Localhost / 127.0.0.1**: Special address that means "this computer"
 - `http://localhost:8000` = "connect to port 8000 on my own machine"
-- Same as `http://127.0.0.1:8000`
+- `localhost` and `127.0.0.1` are the same thing - just different ways to refer to your own computer
 
 **API (Application Programming Interface)**: A service that responds to requests
 - You send a request (like opening a URL)
@@ -110,7 +123,7 @@ This week, we'll walk through all these steps!
 
 ---
 
-## 1. Setup
+## Piece 1: Setup & Your First API Server
 
 ### Navigate to the week7 folder
 
@@ -126,11 +139,11 @@ ls -la
 
 You should see:
 ```
-exercise1_api/ # Basic API server
+exercise1_api/       # Basic API server
 exercise2_streamlit/ # Interactive dashboard
 exercise3_tailscale/ # Expose to internet
-exercise4_cloud/ # Deploy to cloud
-data/ # Database file
+exercise4_cloud/     # Deploy to cloud
+data/                # Database file
 ```
 
 ### Verify uv is installed
@@ -143,10 +156,6 @@ If not installed:
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-
----
-
-## 2. Exercise 1: Your First API Server
 
 ### What We're Building
 
@@ -173,8 +182,8 @@ app = FastAPI()
 
 @app.get("/sum")
 def add_numbers(a: float, b: float):
- result = a + b
- return {"result": result}
+    result = a + b
+    return {"result": result}
 ```
 
 - `FastAPI()` - Creates a web application
@@ -235,32 +244,21 @@ curl "http://localhost:8000/divide?a=10&b=0"
 
 **Open in your browser:** http://localhost:8000/docs
 
-This is **automatic API documentation**! You can:
-- See all endpoints
-- Test them with a web form (click "Try it out")
-- View the expected inputs and outputs
+This is **Swagger/OpenAPI automatic documentation** - a standard API documentation kit that FastAPI provides out of the box. You can:
+- See all endpoints with their expected inputs and outputs
+- Test them interactively with a web form (click "Try it out")
+- View the request/response schemas
+- See example values and data types
+- No need to write any documentation manually - FastAPI generates it from your code!
 
-Try the `/sum` endpoint - enter values for `a` and `b`, click Execute, and see the result!
+Try the `/sum` endpoint:
+1. Click on `/sum` to expand it
+2. Click "Try it out"
+3. Enter values for `a` and `b` (e.g., 5 and 3)
+4. Click "Execute"
+5. See the result in the response section below
 
-### Step 5: Test from another machine (optional)
-
-**Find your local IP address:**
-```bash
-# macOS/Linux
-ifconfig | grep "inet " | grep -v 127.0.0.1
-
-# Or simpler (macOS)
-ipconfig getifaddr en0
-```
-
-You'll get something like: `192.168.1.100`
-
-**From another device on the same network:**
-```bash
-curl "http://192.168.1.100:8000/sum?a=5&b=3"
-```
-
-This only works if you're on the same WiFi/network!
+This is incredibly useful for testing APIs and sharing them with others - they can explore and test your API without needing curl or Postman!
 
 ### Stop the server
 
@@ -268,7 +266,7 @@ Go back to Terminal 1 and press **Ctrl+C**
 
 ---
 
-## 3. Exercise 2: Interactive Dashboard with Streamlit
+## Piece 2: Interactive Dashboard with Streamlit
 
 ### What We're Building
 
@@ -298,7 +296,22 @@ st.metric("Total", 1000)
 
 Streamlit turns Python code into web interfaces automatically.
 
-### Step 2: Run the dashboard
+### Step 2: Inspect the run script
+
+Before running the dashboard, let's understand what the script does:
+
+```bash
+cat run_dashboard.sh
+```
+
+This script:
+- Sets environment variables if needed
+- Configures Streamlit options (port, browser behavior, etc.)
+- Launches the Streamlit server with the dashboard.py file
+
+Understanding shell scripts like this helps you debug issues and customize behavior.
+
+### Step 3: Run the dashboard
 
 ```bash
 ./run_dashboard.sh
@@ -308,13 +321,13 @@ You'll see:
 ```
 You can now view your Streamlit app in your browser.
 
-Local URL: http://localhost:8501
-Network URL: http://192.168.1.100:8501
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.1.100:8501
 ```
 
 **Your browser should open automatically.** If not, open: http://localhost:8501
 
-### Step 3: Explore the dashboard
+### Step 4: Explore the dashboard
 
 Try these features:
 1. **Statistics page**: See database metrics
@@ -326,7 +339,7 @@ Try these features:
 - It automatically reloads when you save the file
 - It handles all the web stuff - you just write Python!
 
-### Step 4: Make a change (optional)
+### Step 5: Make a change (optional)
 
 Edit `dashboard.py`:
 ```python
@@ -345,12 +358,12 @@ The dashboard runs SQL queries like:
 
 ```python
 query = """
- SELECT Party, COUNT(*) as count
- FROM speeches
- WHERE Party != '[]'
- GROUP BY Party
- ORDER BY count DESC
- LIMIT 10
+    SELECT Party, COUNT(*) as count
+    FROM speeches
+    WHERE Party != '[]'
+    GROUP BY Party
+    ORDER BY count DESC
+    LIMIT 10
 """
 df = pd.read_sql_query(query, conn)
 ```
@@ -363,7 +376,26 @@ This:
 
 ---
 
-## 4. Exercise 3: Expose to the Internet with Tailscale
+## Piece 3: Expose to Internet with Tailscale
+
+### ⚠️ SECURITY WARNING ⚠️
+
+**YOU ARE ABOUT TO SERVE CONTENT FROM YOUR OWN COMPUTER TO THE PUBLIC INTERNET**
+
+**Understand what this means:**
+- **The network route**: Internet → Tailscale servers → YOUR computer → your app
+- **Your machine is the server**: You are exposing a service running on your personal computer to anyone with the URL
+- **While Tailscale is secure**, you are still making your local service accessible from anywhere in the world
+- **You can get a custom domain** and point it to your computer via Tailscale (but this is NOT recommended for production use)
+
+**Security notes:**
+- The URL includes a random 20-character path (provides some obscurity)
+- Without the exact URL, people can't easily find your service
+- Traffic goes through Tailscale's encrypted network
+- You can stop the funnel anytime with Ctrl+C
+- This is great for demos and sharing with colleagues, but NOT for production deployments
+
+**IMPORTANT LIMITATION**: Tailscale only allows ONE active funnel per machine at a time. Starting this will hijack any existing funnel you have running. All funnels use port 443 (HTTPS).
 
 ### What is Tailscale Funnel?
 
@@ -374,8 +406,6 @@ This:
 - Works from anywhere (not just your network)
 - Uses HTTPS automatically
 - Is secure (only people with the URL can access it)
-
-**IMPORTANT LIMITATION**: Tailscale only allows ONE active funnel per machine at a time. Starting this will hijack any existing funnel you have running. All funnels use port 443 (HTTPS).
 
 ### Step 1: Install Tailscale
 
@@ -455,16 +485,9 @@ The URL will be unique to your machine. Copy the entire URL (it's long!).
 
 (The funnel runs in the foreground so you can see what's happening and stop it easily.)
 
-### Security Notes
-
-- The URL includes a random 20-character path
-- Without the exact URL, people can't find your service
-- You can stop the funnel anytime
-- Traffic goes through Tailscale's encrypted network
-
 ---
 
-## 5. Exercise 4: Deploy to Streamlit Community Cloud
+## Piece 4: Deploy to Cloud
 
 ### What is Streamlit Community Cloud?
 
@@ -492,10 +515,10 @@ ls -la
 
 You should see:
 ```
-app.py # Streamlit application
+app.py           # Streamlit application
 requirements.txt # Python dependencies
-speakger.db # Database file
-.streamlit/ # Configuration
+speakger.db      # Database file
+.streamlit/      # Configuration
 ```
 
 **Key file: `requirements.txt`**
@@ -518,7 +541,7 @@ git remote -v
 
 You should see YOUR username in the URL:
 ```
-origin  https://github.com/YOUR_USERNAME/repo_name.git
+origin  https://github.com/YOUR_USERNAME/2025s1_mlci.git
 ```
 
 If you see the course repo URL instead, you need to fork it first (see "Getting Started" section).
@@ -529,13 +552,23 @@ If you see the course repo URL instead, you need to fork it first (see "Getting 
 2. Sign in with GitHub
 3. Click **"New app"**
 4. Fill in the deployment form:
- - **Repository**: Select your forked repo (should be `YOUR_USERNAME/repo_name`)
- - **Branch**: `main` (or `master` - check what your repo uses)
- - **Main file path**: `week7--hosting/exercise4_cloud/app.py`
+   - **Repository**: Select your forked repo (should be `YOUR_USERNAME/2025s1_mlci`)
+   - **Branch**: `main` (or `master` - check what your repo uses)
+   - **Main file path**: `week7--hosting/exercise4_cloud/app.py`
 
-   **IMPORTANT**: You must navigate to the exact path where `app.py` is located. The file is NOT in the root of the repository - it's inside `week7--hosting/exercise4_cloud/`. If you get deployment errors, double-check this path matches your repository structure!
+     **IMPORTANT**: This is the FULL path from the repository root. The file is NOT in the repo root - you must navigate to it. The structure is:
+     ```
+     2025s1_mlci/                    (repo root)
+     └── week7--hosting/             (folder)
+         └── exercise4_cloud/        (subfolder)
+             └── app.py              (the file)
+     ```
 
- - **App URL**: Choose a custom name (e.g., `speakger-dashboard`)
+     So the complete path is: `week7--hosting/exercise4_cloud/app.py`
+
+     If you get deployment errors like "File not found", double-check this path matches your repository structure!
+
+   - **App URL**: Choose a custom name (e.g., `speakger-dashboard`)
 5. Click **"Deploy!"**
 
 ### Step 4: Wait for deployment
@@ -563,7 +596,9 @@ https://your-username-repo-name-speakger-dashboard.streamlit.app
 - **Free** - For public repos
 - **Auto-updating** - Push to GitHub and it redeploys automatically
 
-### Step 6: Test Auto-Redeployment
+---
+
+## Piece 5: Testing Auto-Redeployment
 
 Let's test that changes automatically redeploy. Make a small edit to `app.py`:
 
@@ -598,7 +633,7 @@ git push
 
 That's automatic deployment in action - any git push triggers a redeploy!
 
-### Step 7: Share with the world
+### Share with the world
 
 Send the URL to:
 - Classmates
@@ -622,28 +657,51 @@ git push
 
 Streamlit Cloud automatically redeploys within a minute!
 
-### Troubleshooting
-
-**"No such file: speakger.db"**
-- Make sure the database is committed: `git ls-files | grep speakger.db`
-- Check the file path in `app.py`
-
-**"ModuleNotFoundError"**
-- Verify `requirements.txt` lists all dependencies
-- Check package versions are correct
-
-**App is slow or times out**
-- Database might be too large (1GB limit)
-- Consider using a smaller sample
-- Or host the database separately (PostgreSQL, Supabase)
-
-**View logs:**
-- In Streamlit Cloud dashboard, click "Manage app" → "Logs"
-- Shows all errors and print statements
-
 ---
 
-## 6. Comparison: Three Ways to Host
+## Concepts Review
+
+### Ports
+
+```
+Your Computer (localhost / 127.0.0.1)
+  Port 8000 → API Server (FastAPI)
+  Port 8501 → Streamlit Dashboard
+  Port 3000 → (could be another app)
+  Port 5432 → (commonly used for PostgreSQL)
+```
+
+Each port can only be used by one application at a time.
+
+### Client-Server Model
+
+```
+Client (you)            Server (your script)
+     |                          |
+     |----Request (curl)------->|
+     |                          | (processes)
+     |<---Response (JSON)-------|
+```
+
+Your API server is always waiting, ready to respond.
+
+### Hosting Layers
+
+```
+1. Local Development
+   localhost:8000 (only you)
+
+2. Local Network
+   192.168.1.100:8000 (same WiFi)
+
+3. Internet via Tunnel
+   https://your-machine.tailnet.ts.net (anyone with URL)
+
+4. Cloud Hosting
+   https://your-app.streamlit.app (everyone)
+```
+
+### Comparison: Three Ways to Host
 
 | Method | Accessibility | Setup | Cost | Best For |
 |--------|--------------|-------|------|----------|
@@ -655,51 +713,7 @@ Streamlit Cloud automatically redeploys within a minute!
 
 ---
 
-## 7. Concepts Review
-
-### Ports
-
-```
-Your Computer (localhost / 127.0.0.1)
- Port 8000 → API Server (FastAPI)
- Port 8501 → Streamlit Dashboard
- Port 3000 → (could be another app)
- Port 5432 → (commonly used for PostgreSQL)
-```
-
-Each port can only be used by one application at a time.
-
-### Client-Server Model
-
-```
-Client (you) Server (your script)
- | |
- |----Request (curl)----->|
- | | (processes)
- |<---Response (JSON)-----|
-```
-
-Your API server is always waiting, ready to respond.
-
-### Hosting Layers
-
-```
-1. Local Development
- localhost:8000 (only you)
-
-2. Local Network
- 192.168.1.100:8000 (same WiFi)
-
-3. Internet via Tunnel
- https://your-machine.tailnet.ts.net (anyone with URL)
-
-4. Cloud Hosting
- https://your-app.streamlit.app (everyone)
-```
-
----
-
-## 9. Next Steps & Extensions
+## Next Steps & Extensions
 
 ### Ideas to Explore
 
@@ -730,7 +744,7 @@ Your API server is always waiting, ready to respond.
 
 ---
 
-## 9. Troubleshooting Guide
+## Troubleshooting
 
 ### "Address already in use"
 
@@ -780,21 +794,24 @@ ls -la data/speakger.db
 grep "DB_PATH" exercise2_streamlit/dashboard.py
 ```
 
----
+### Streamlit Cloud Deployment Issues
 
-## 10. Summary
+**"No such file: speakger.db"**
+- Make sure the database is committed: `git ls-files | grep speakger.db`
+- Check the file path in `app.py`
 
-You now know how to:
+**"ModuleNotFoundError"**
+- Verify `requirements.txt` lists all dependencies
+- Check package versions are correct
 
- Run a local API server (FastAPI)
- Create an interactive dashboard (Streamlit)
- Expose localhost to the internet (Tailscale)
- Deploy to the cloud (Streamlit Community Cloud)
+**App is slow or times out**
+- Database might be too large (1GB limit)
+- Consider using a smaller sample
+- Or host the database separately (PostgreSQL, Supabase)
 
-**Key Takeaway**: Hosting is just making your code accessible to others. You control the level of accessibility:
-- Localhost → Local Network → Internet → Cloud
-
-Each step makes your work more accessible, but also adds complexity.
+**View logs:**
+- In Streamlit Cloud dashboard, click "Manage app" → "Logs"
+- Shows all errors and print statements
 
 ---
 
@@ -850,6 +867,22 @@ cd ../exercise3_tailscale
 
 ---
 
-** Week 7 Complete!**
+## Summary
+
+You now know how to:
+
+✓ Run a local API server (FastAPI)
+✓ Create an interactive dashboard (Streamlit)
+✓ Expose localhost to the internet (Tailscale)
+✓ Deploy to the cloud (Streamlit Community Cloud)
+
+**Key Takeaway**: Hosting is just making your code accessible to others. You control the level of accessibility:
+- Localhost → Local Network → Internet → Cloud
+
+Each step makes your work more accessible, but also adds complexity.
+
+---
+
+**Week 7 Complete!**
 
 Next week: We'll explore more advanced deployment patterns, containerization with Docker, and scaling applications.
