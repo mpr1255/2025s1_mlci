@@ -2,7 +2,7 @@
 
 Learn how to take your Python applications from local development to public deployment.
 
-## Quick Start
+## Quick start
 
 ```bash
 # 1. Fork the repository on GitHub first:
@@ -24,9 +24,9 @@ Replace `YOUR_USERNAME` with your GitHub username.
 - **exercise4_cloud/** - Deploy to Streamlit Community Cloud (Pieces 4-5)
 - **data/** - SpeakGer database (1000 speeches)
 
-## The Five Pieces
+## The five pieces
 
-### Piece 1: Basic API Server
+### Piece 1: Basic API server
 Run a local API with math endpoints (`/sum`, `/divide`, etc.)
 
 ```bash
@@ -41,7 +41,7 @@ curl "http://localhost:8000/sum?a=5&b=3"
 
 Or open http://localhost:8000/docs in your browser for interactive Swagger/OpenAPI testing!
 
-### Piece 2: Streamlit Dashboard
+### Piece 2: Streamlit dashboard
 Create an interactive web dashboard to explore parliamentary speeches
 
 ```bash
@@ -51,7 +51,7 @@ cd exercise2_streamlit
 
 Opens automatically in your browser at http://localhost:8501
 
-### Piece 3: Tailscale Funnel
+### Piece 3: Tailscale funnel
 Expose your local dashboard to the internet (with security warnings!)
 
 ```bash
@@ -64,14 +64,14 @@ cd ../exercise3_tailscale
 ./start_funnel.sh
 ```
 
-### Pieces 4 & 5: Cloud Deploy & Auto-Redeploy
+### Pieces 4 & 5: Cloud deploy & auto-redeploy
 Deploy to Streamlit Community Cloud for permanent hosting and test automatic redeployment
 
 See [exercise4_cloud/README.md](exercise4_cloud/README.md) and [TUTORIAL.md](TUTORIAL.md) for complete instructions.
 
 ## Prerequisites
 
-### Required for All Exercises
+### Required for all exercises
 - **uv**: Python package manager (you should have this from Week 6)
   ```bash
   uv --version
@@ -80,7 +80,7 @@ See [exercise4_cloud/README.md](exercise4_cloud/README.md) and [TUTORIAL.md](TUT
 
 - **Week 6 completed**: You should be familiar with SQLite databases and SQL queries
 
-### Required for Exercise 3 (Tailscale)
+### Required for Piece 3 (Tailscale)
 - **Tailscale installed**: For exposing your local app to the internet
   - macOS: `brew install tailscale`
   - Linux: `curl -fsSL https://tailscale.com/install.sh | sh`
@@ -89,14 +89,14 @@ See [exercise4_cloud/README.md](exercise4_cloud/README.md) and [TUTORIAL.md](TUT
 - **Tailscale account**: Free account (you'll create this when you first run `tailscale up`)
   - Can sign in with Google, GitHub, or Microsoft
 
-### Required for Exercise 4 (Cloud Deployment)
+### Required for Piece 4 (cloud deployment)
 - **GitHub account**: For hosting your code - [github.com](https://github.com)
 
 - **Streamlit Community Cloud account**: For deploying your app
   - [streamlit.io/cloud](https://streamlit.io/cloud)
   - Sign in with your GitHub account
 
-## Learning Path: The Five Pieces
+## Learning path: the five pieces
 
 This week progressively builds your understanding:
 
@@ -132,7 +132,7 @@ ls -la data/speakger.db  # Verify it exists
 - [Tailscale Funnel Guide](https://tailscale.com/kb/1223/funnel/)
 - [Streamlit Cloud Docs](https://docs.streamlit.io/streamlit-community-cloud)
 
-## Next Steps
+## Next steps
 
 After completing these exercises, try:
 - Customizing the dashboard with your own queries
